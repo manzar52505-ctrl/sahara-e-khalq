@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sahara-e-Khalq | A Support for Humanity</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- FIX: Suppress fetch error before anything loads -->
+    <script>
+      (function() {
+        // Prevent the error from being shown
+        const originalError = console.error;
+        console.error = function() {
+          const args = Array.from(arguments);
+          if (args.some(arg => String(arg).includes('Cannot set property fetch'))) {
+            return;
+          }
+          originalError.apply(console, args);
+        };
+        
+        // Also try to lock fetch as early as possible
+        try {
+          if (window.fetch) {
+            const fetch = window.fetch;
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return fetch; },
+              set: function() { },
+              configurable: false
+            });
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

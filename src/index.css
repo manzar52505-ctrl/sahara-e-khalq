@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-urdu: "Noto Nastaliq Urdu", serif;
+
+  --color-primary: #0d6b6b;
+  --color-primary-dark: #053333;
+  --color-accent: #c9922a;
+  --color-accent-dark: #b07d20;
+  --color-ivory: #faf7f2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply bg-ivory text-primary font-sans antialiased overflow-x-hidden;
+  }
+
+  .lang-urdu {
+    @apply font-urdu;
+    line-height: 2.2 !important;
+  }
+  
+  /* Ensure RTL layout works with Tailwind */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  /* Standardize touch targets */
+  button, a {
+    @apply touch-manipulation;
+  }
+}
+
+@layer components {
+  .bg-warm-bg {
+    @apply bg-[radial-gradient(circle_at_top_left,_#faf7f2_0%,_#f2eee4_100%)];
+  }
+}
+
+/* Custom transitions */
+.transition-all {
+  transition-duration: 400ms;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-ivory;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full hover:bg-accent/40 transition-colors;
+}
+
+/* Selection */
+::selection {
+  @apply bg-accent text-white;
+}
