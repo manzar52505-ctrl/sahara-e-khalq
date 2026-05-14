@@ -1,22 +1,14 @@
 {
-  "name": "Sahara-e-Khalq | سہارا خلق",
-  "short_name": "Sahara-e-Khalq",
-  "description": "A Support for Humanity - Charity Foundation",
-  "start_url": "/",
+  "background_color": "#ffffff",
+  "dir": "ltr",
   "display": "standalone",
-  "background_color": "#0d6b6b",
+  "name": "sahara-e-khalq.netlify",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "sahara-e-khalq.netlify",
+  "start_url": "/",
   "theme_color": "#0d6b6b",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "id": "com.saharaekhalq.app",
+  "description": "Sahara-e-Khalq is a charity foundation serving humanity with food, education, medical care and shelter in Rawalpindi and Islamabad.",
+  "lang": "en"
 }
