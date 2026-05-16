@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'motion/react';
-import { Users, Utensils, GraduationCap, Cross, HeartHandshake } from 'lucide-react';
+import { Users, Utensils, GraduationCap, Cross, HeartHandshake, Loader2 } from 'lucide-react';
 import { Language } from '../types';
+import { subscribeToStats } from '../services/firebase';
 
 interface CounterProps {
   value: number;
@@ -36,43 +37,62 @@ interface ImpactBarProps {
 }
 
 export default function ImpactBar({ lang }: ImpactBarProps) {
+  const [dbStats, setDbStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToStats((data: any) => {
+      setDbStats(data);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const stats = [
     { 
       icon: Users, 
-      value: 12400, 
+      value: dbStats?.familiesHelped || 12400, 
       suffix: '+', 
       labelEn: 'Families Helped', 
       labelUr: 'خاندانوں کی مدد' 
     },
     { 
       icon: Utensils, 
-      value: 85000, 
+      value: dbStats?.mealsServed || 85000, 
       suffix: '+', 
       labelEn: 'Meals Served', 
       labelUr: 'کھانا فراہم کیا' 
     },
     { 
       icon: GraduationCap, 
-      value: 3200, 
+      value: dbStats?.studentsSupported || 3200, 
       suffix: '+', 
       labelEn: 'Students Supported', 
       labelUr: 'طلباء کی حمایت' 
     },
     { 
       icon: Cross, 
-      value: 940, 
+      value: dbStats?.medicalCases || 940, 
       suffix: '+', 
       labelEn: 'Medical Cases', 
       labelUr: 'طبی کیسز' 
     },
     { 
       icon: HeartHandshake, 
-      value: 320, 
+      value: dbStats?.totalVolunteers || 320, 
       suffix: '+', 
       labelEn: 'Volunteers', 
       labelUr: 'رضاکار' 
     },
   ];
+
+  if (loading && !dbStats) {
+    return (
+      <div className="bg-primary-dark py-12 flex justify-center">
+        <Loader2 className="w-8 h-8 text-white/20 animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section className="bg-primary-dark text-white py-12 md:py-20 relative overflow-hidden">

@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "Campaign": {
+      "title": "Campaign",
+      "description": "A donation campaign for Sahara-e-Khalq",
+      "type": "object",
+      "properties": {
+        "titleEn": { "type": "string" },
+        "titleUr": { "type": "string" },
+        "descriptionEn": { "type": "string" },
+        "descriptionUr": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "collectedAmount": { "type": "number" },
+        "easypaisaNumber": { "type": "string" },
+        "easypaisaName": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "completed", "upcoming"] },
+        "startDate": { "type": "string", "format": "date-time" },
+        "endDate": { "type": "string", "format": "date-time" },
+        "location": { "type": "string" },
+        "isFeatured": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["titleEn", "titleUr", "targetAmount", "collectedAmount", "status"]
+    },
+    "GalleryItem": {
+      "title": "Gallery Item",
+      "description": "An image in the foundation's gallery",
+      "type": "object",
+      "properties": {
+        "imageUrl": { "type": "string" },
+        "caption": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["imageUrl"]
+    },
+    "NewsPost": {
+      "title": "News Post",
+      "description": "A news or update post from the foundation",
+      "type": "object",
+      "properties": {
+        "titleEn": { "type": "string" },
+        "titleUr": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "descriptionEn": { "type": "string" },
+        "descriptionUr": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["published", "draft"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["titleEn", "titleUr", "category", "date", "status"]
+    },
+    "Stats": {
+      "title": "Stats",
+      "description": "Foundation overview statistics",
+      "type": "object",
+      "properties": {
+        "totalDonations": { "type": "number" },
+        "totalVolunteers": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "campaigns": {
+      "schema": "Campaign",
+      "description": "Collection of all campaigns"
+    },
+    "gallery": {
+      "schema": "GalleryItem",
+      "description": "Collection of all gallery items"
+    },
+    "news": {
+      "schema": "NewsPost",
+      "description": "Collection of all news posts"
+    },
+    "stats": {
+      "schema": "Stats",
+      "description": "Single document for foundation stats"
+    }
+  }
+}

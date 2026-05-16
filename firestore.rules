@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'saharaekhalq@gmail.com' || 
+        request.auth.token.email == 'mahirkhan52505@gmail.com' ||
+        request.auth.token.email == 'manzar52505@gmail.com'
+      );
+    }
+
+    match /campaigns/{campaignId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /gallery/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /news/{newsId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /stats/{statId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Heart, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
+import { smoothScrollTo } from '../lib/scroll-utils';
 
 interface HeroProps {
   lang: Language;
@@ -65,6 +66,7 @@ export default function Hero({ lang }: HeroProps) {
         >
           <a 
             href="#donate" 
+            onClick={(e) => smoothScrollTo(e, 'donate')}
             className="group bg-accent text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-accent-dark transition-all shadow-2xl shadow-accent/30 flex items-center gap-2"
           >
             {lang === 'en' ? 'Support Now' : 'تعاون کریں'}
@@ -72,6 +74,7 @@ export default function Hero({ lang }: HeroProps) {
           </a>
           <a 
             href="#programs" 
+            onClick={(e) => smoothScrollTo(e, 'programs')}
             className="text-white border-b-2 border-white/30 hover:border-accent text-xl font-medium py-2 transition-all"
           >
             {lang === 'en' ? 'Our Impact' : 'ہمارے اثرات'}

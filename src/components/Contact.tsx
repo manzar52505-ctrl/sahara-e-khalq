@@ -77,7 +77,17 @@ export default function Contact({ lang, onToast }: ContactProps) {
                     <h4 className="font-bold text-primary text-lg mb-1">
                       {lang === 'en' ? info.labelEn : info.labelUr}
                     </h4>
-                    <p className="text-primary/60 italic leading-snug">{info.val}</p>
+                    {info.icon === Mail ? (
+                      <a href={`mailto:${info.val}`} className="text-primary/60 italic leading-snug hover:text-accent transition-colors">
+                        {info.val}
+                      </a>
+                    ) : info.icon === Phone ? (
+                      <a href={`tel:${info.val.replace(/\s+/g, '')}`} className="text-primary/60 italic leading-snug hover:text-accent transition-colors">
+                        {info.val}
+                      </a>
+                    ) : (
+                      <p className="text-primary/60 italic leading-snug">{info.val}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}
