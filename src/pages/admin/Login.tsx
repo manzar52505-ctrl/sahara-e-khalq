@@ -32,7 +32,7 @@ export default function Login() {
       
       if (!email || !ADMIN_EMAILS.map(e => e.toLowerCase()).includes(email.toLowerCase())) {
         await auth.signOut();
-        throw new Error('Unauthorized access. Only registered admin emails are allowed.');
+        throw new Error(`Unauthorized access. Your email (${email}) is not in the authorized list.`);
       }
 
       // Provision admin document for Firestore rules compatibility
@@ -46,22 +46,28 @@ export default function Login() {
         }, { merge: true });
         console.log('Admin document provisioned successfully');
       } catch (adminErr) {
-        console.warn('Failed to provision admin document, rules may still allow access via email check:', adminErr);
+        console.warn('Failed to provision admin document:', adminErr);
       }
       
       navigate('/admin/dashboard');
     } catch (err: any) {
-      console.error('Login error:', err.code, err.message);
+      console.error('Login error:', err);
       let msg = 'Failed to sign in with Google.';
       
-      if (err.message.includes('Unauthorized access')) {
+      if (err.message?.includes('Unauthorized access')) {
         msg = err.message;
       } else if (err.code === 'auth/popup-closed-by-user') {
-        msg = 'Login cancelled. Please try again.';
+        msg = 'Login cancelled. Please make sure popups are allowed and try again.';
       } else if (err.code === 'auth/cancelled-by-user') {
         msg = 'Login request was cancelled.';
       } else if (err.code === 'auth/network-request-failed') {
-        msg = 'Network error: Cannot reach Firebase servers. If you are using the integrated preview, try clicking "Open in New Tab" in the top right corner.';
+        msg = 'Network error: Cannot reach Firebase servers. Please refresh and check your internet connection.';
+      } else if (err.code === 'auth/unauthorized-domain') {
+        msg = `Domain not authorized: ${window.location.hostname}. Please add this domain to the authorized domains in your Firebase Console (Authentication > Settings > Authorized Domains).`;
+      } else if (err.code) {
+        msg = `Error (${err.code}): ${err.message || 'An unexpected error occurred.'}`;
+      } else {
+        msg = err.message || 'An unexpected error occurred.';
       }
       
       setError(msg);
