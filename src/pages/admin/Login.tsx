@@ -63,7 +63,13 @@ export default function Login() {
       } else if (err.code === 'auth/network-request-failed') {
         msg = 'Network error: Cannot reach Firebase servers. Please refresh and check your internet connection.';
       } else if (err.code === 'auth/unauthorized-domain') {
-        msg = `Domain not authorized: ${window.location.hostname}. Please add this domain to the authorized domains in your Firebase Console (Authentication > Settings > Authorized Domains).`;
+        msg = `Domain not authorized: ${window.location.hostname}. 
+        
+Troubleshooting Steps:
+1. Verify "https://${window.location.hostname}" is in Firebase Console -> Authentication -> Settings -> Authorized Domains.
+2. If using root domain (e.g. example.com), also add the "www" version.
+3. Check Google Cloud Console -> APIs & Services -> Credentials. Find the OAuth 2.0 Client ID used by Firebase and ensure "${window.location.origin}" is in "Authorized JavaScript origins".
+4. Propagation can take 5-10 minutes. Please try again in a few minutes.`;
       } else if (err.code) {
         msg = `Error (${err.code}): ${err.message || 'An unexpected error occurred.'}`;
       } else {

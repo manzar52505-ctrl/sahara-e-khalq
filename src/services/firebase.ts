@@ -23,6 +23,7 @@ import { OperationType, FirestoreErrorInfo } from '../types';
 import { uploadToCloudinary } from './cloudinary';
 
 console.log('[Firebase] Initializing with config:', firebaseConfig.projectId);
+console.log('[Firebase] Auth Domain:', firebaseConfig.authDomain);
 
 const app = initializeApp(firebaseConfig);
 
