@@ -1,10 +1,10 @@
 {
-  "projectId": "geometric-ability-ltgzl",
-  "appId": "1:877617770568:web:16b2188fea4e663656287d",
-  "apiKey": "AIzaSyCuRugz7q5UrGk-tMxte8hOeLQ1HUqWums",
-  "authDomain": "geometric-ability-ltgzl.firebaseapp.com",
+  "projectId": "sahara-e-khalq-production",
+  "appId": "1:597703355852:web:f8dd12fdceee1671460169",
+  "apiKey": "AIzaSyBrkzPLKyfCMkT6Sm325_o9ZHVXFj69wmE",
+  "authDomain": "sahara-e-khalq-production.firebaseapp.com",
   "firestoreDatabaseId": "ai-studio-e28abada-8a90-4669-a06b-e13ddc119752",
-  "storageBucket": "geometric-ability-ltgzl.firebasestorage.app",
-  "messagingSenderId": "877617770568",
+  "storageBucket": "sahara-e-khalq-production.firebasestorage.app",
+  "messagingSenderId": "597703355852",
   "measurementId": ""
 }
