@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import Sidebar from '../../components/admin/Sidebar';
 import Header from '../../components/admin/Header';
+import SEO from '../../components/SEO';
 import { 
   Megaphone, 
   Users, 
@@ -152,6 +153,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex bg-[#F8FAFC] min-h-screen">
+      <SEO title="Admin Dashboard" noIndex={true} />
       <Sidebar />
       <div className="flex-1 ml-64">
         <Header title="Mission Control" />

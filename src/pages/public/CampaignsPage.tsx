@@ -7,6 +7,7 @@ import { Campaign as CampaignType } from '../../types';
 import { ArrowLeft, Sparkles, MapPin, Search } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import SEO from '../../components/SEO';
 
 export default function CampaignsPage() {
   const [campaigns, setCampaigns] = useState<CampaignType[]>([]);
@@ -31,6 +32,10 @@ export default function CampaignsPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
+      <SEO 
+        title="Active Campaigns | Sahara-e-Khalq Foundation"
+        description="Explore our active social welfare missions. Join us in making an impact through healthcare, education, and humanitarian aid."
+      />
       <Navbar lang={lang} onToggleLang={() => {}} />
       
       <main className="pt-32 pb-20">

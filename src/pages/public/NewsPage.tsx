@@ -7,6 +7,7 @@ import { NewsPost, NewsCategory } from '../../types';
 import { ArrowLeft, Calendar, Tag, ChevronRight, Clock } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import SEO from '../../components/SEO';
 
 const categories: (NewsCategory | 'All')[] = ['All', 'Campaign', 'Event', 'Health', 'Education'];
 
@@ -37,6 +38,10 @@ export default function NewsPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
+      <SEO 
+        title="News & Updates | Sahara-e-Khalq Foundation"
+        description="Stay informed about our latest activities and impact stories. Read how we are making a difference in the lives of those in need."
+      />
       <Navbar lang={lang} onToggleLang={() => {}} />
       
       <main className="pt-32 pb-20">

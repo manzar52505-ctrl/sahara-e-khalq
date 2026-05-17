@@ -40,9 +40,9 @@ export default function Hero({ lang }: HeroProps) {
           className="font-serif text-5xl md:text-8xl text-white mb-6 leading-[1.1] tracking-tight"
         >
           {lang === 'en' ? (
-            <>Where Small Efforts Create <span className="text-accent italic">Big Change</span></>
+            <>Sahara-e-Khalq Foundation: Where <span className="text-accent italic">Small Efforts</span> Create Big Change</>
           ) : (
-            <span className="font-urdu leading-snug">ایک چھوٹی سی کوشش، بہت سے چہروں پر مسکراہٹ</span>
+            <span className="font-urdu leading-snug">سہارا خلق فاؤنڈیشن: ایک چھوٹی سی کوشش، بہت سے چہروں پر مسکراہٹ</span>
           )}
         </motion.h1>
 

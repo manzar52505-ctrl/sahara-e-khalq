@@ -14,6 +14,7 @@ import News from '../components/News';
 import Volunteer from '../components/Volunteer';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import SEO from '../components/SEO';
 import { Language } from '../types';
 
 export default function App() {
@@ -48,6 +49,10 @@ export default function App() {
 
   return (
     <div className={`min-h-screen bg-ivory text-primary selection:bg-accent selection:text-white ${lang === 'ur' ? 'lang-urdu font-urdu' : 'font-sans'}`}>
+      <SEO 
+        title="Home | Sahara-e-Khalq Foundation"
+        description="Serving humanity with compassion. Sahara-e-Khalq Foundation works for education, food security, and healthcare for the underprivileged."
+      />
       <Navbar lang={lang} onToggleLang={toggleLanguage} />
       
       <main>

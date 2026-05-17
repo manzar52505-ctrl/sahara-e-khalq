@@ -6,6 +6,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { ADMIN_EMAILS } from '../../constants';
 import { Heart, Loader2, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
+import SEO from '../../components/SEO';
 
 export default function Login() {
   const [error, setError] = useState<string | null>(null);
@@ -84,6 +85,7 @@ Troubleshooting Steps:
 
   return (
     <div className="min-h-screen bg-ivory flex items-center justify-center p-6 bg-gradient-to-br from-ivory to-accent/5">
+      <SEO title="Admin Login" noIndex={true} />
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

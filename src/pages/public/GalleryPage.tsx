@@ -7,6 +7,7 @@ import { GalleryItem } from '../../types';
 import { ArrowLeft, Maximize2, X, Download, Share2 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import SEO from '../../components/SEO';
 
 export default function GalleryPage() {
   const [items, setItems] = useState<GalleryItem[]>([]);
@@ -26,6 +27,10 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-ivory">
+      <SEO 
+        title="Impact Gallery | Sahara-e-Khalq Foundation"
+        description="Visual stories of our impact. See our foundation's work in action across various communities and humanitarian missions."
+      />
       <Navbar lang={lang} onToggleLang={() => {}} />
       
       <main className="pt-32 pb-20">
